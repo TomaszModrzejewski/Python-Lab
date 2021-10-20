@@ -221,7 +221,7 @@ class Symmetric_Icon(Attractor):
         p = a*zzbar + l
         zreal, zimag = x, y
 
-        for i in range(1, d-1):
+        for _ in range(1, d-1):
             za, zb = zreal * x - zimag * y, zimag * x + zreal * y
             zreal, zimag = za, zb
 
