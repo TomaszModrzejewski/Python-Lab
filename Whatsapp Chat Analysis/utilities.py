@@ -7,10 +7,8 @@ dateAndTimepattern = r"(\d+\/\d+\/\d+)(,)(\s)(\d+:\d+)(\s)(-)(\s\w+)*(:)"
 regexDate = re.compile(dateAndTimepattern, flags=re.M)
 
 def cleanText(filename):    
-    chat = open(filename, "r", encoding="utf8")
-    chatText = chat.read()
-    chat.close()
-
+    with open(filename, "r", encoding="utf8") as chat:
+        chatText = chat.read()
     # 01/09/17, 11:34 PM - Amfa:
 
     """
@@ -20,10 +18,8 @@ def cleanText(filename):
     chatText = regexMedia.sub("", chatText)
     chatText = regexDate.sub("", chatText)
 
-    lines = []
-
-    for line in chatText.splitlines():
-        if line.strip() is not "": # If it's empty, we don't need it
-            lines.append(line.strip())
-
-    return lines
+    return [
+        line.strip()
+        for line in chatText.splitlines()
+        if line.strip() is not ""
+    ]
