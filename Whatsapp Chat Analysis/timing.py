@@ -16,10 +16,7 @@ def split_text(filename):
 
 def groupByHour(AM, PM):
     # Now group time into 1-hour intervals
-    time_groups = {}
-
-    for i in range(24):
-        time_groups[str(i)] = 0  # skeleton container
+    time_groups = {str(i): 0 for i in range(24)}
 
     # if the hour is in AM
     for time in AM:

@@ -11,7 +11,7 @@ def analyze(name):
     linesList = cleanText(name)
     neutral, negative, positive = 0, 0, 0
 
-    for index, sentence in enumerate(linesList):
+    for sentence in linesList:
         # print("Processing {0}%".format(str((index * 100) / len(linesList))))
 
         if re.match(r'^[\w]', sentence) is None:
@@ -22,10 +22,10 @@ def analyze(name):
 
         maxAttribute = max(scores, key=lambda k: scores[k])
 
-        if maxAttribute == "neu":
-            neutral += 1
-        elif maxAttribute == "neg":
+        if maxAttribute == "neg":
             negative += 1
+        elif maxAttribute == "neu":
+            neutral += 1
         else:
             positive += 1
 
